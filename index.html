@@ -219,6 +219,14 @@
           <p>To change this application, update your code and rebuild/redeploy the image.</p>
           <img src="cars.jpg" alt="Car">
       </section>
+        <title>OpenLayers Simplest Example</title>
+        <div id="demoMap" style="height:250px"></div>
+        <script src="OpenLayers.js"></script>
+        <script>
+          map = new OpenLayers.Map("demoMap");
+          map.addLayer(new OpenLayers.Layer.OSM());
+          map.zoomToMaxExtent();
+        </script>
     </section>
     <section class="col-xs-12 col-sm-6 col-md-6">
       <h3>For more information and help</h3>
@@ -230,73 +238,11 @@
         <li><a href="http://webchat.freenode.net/?randomnick=1&channels=openshift&uio=d4">IRC channel at #openshift on freenode.net</a></li>
       </ul>
   <html>
-  <head>
-    <title>OpenLayers Demo</title>
-    <style type="text/css">
-      html, body, #basicMap {
-          width: 100%;
-          height: 100%;
-          margin: 0;
-      }
-      #demoMap {
-          height: 250px;
-          width: 100%;
-      }
-    </style>
-    <script src="OpenLayers.js"></script>
-    <script>
-      function init() {
-        var map = new OpenLayers.Map("basicMap");
-
-
-        var baseLayer = new OpenLayers.Layer.OSM();
-        var fromProjection = new OpenLayers.Projection("EPSG:4326");
-        var toProjection = new OpenLayers.Projection("EPSG:900913");
-
-        var extent = new OpenLayers.Bounds(-1.32, 51.71, -1.18, 51.80).transform(fromProjection, toProjection);
-
-        var options = {
-          restrictedExtent: extent,
-          controls: [
-            new OpenLayers.Control.Navigation(),
-            new OpenLayers.Control.PanZoomBar(),
-            new OpenLayers.Control.Attribution()
-          ]
-        };
-        map = new OpenLayers.Map("basicMap", options);
-
-        map.addLayer(baseLayer);
-        var customLayer = new OpenLayers.Layer.OSM(
-          "Custom Layer",
-          "URL_TO_TILES/${z}/${x}/${y}.png",
-          {
-            zoomOffset: 13,
-            resolutions: [
-              19.1092570678711,
-              9.55462853393555,
-              4.77731426696777,
-              2.38865713348389
-            ]
-          }
-        );
-        map.addLayer(customLayer);
-
-        var centerPosition = new OpenLayers.LonLat(-1.25, 51.75).transform(fromProjection, toProjection);
-        map.setCenter(centerPosition, 10);
-      }
-    </script>
-  </head>
-  <body onload="init();">
-    <div id="basicMap"></div>
-  </body>
-</html>
     </section>
   </div> 
   <footer>
     <div class="logo"><a href="https://www.openshift.com/"></a></div>
   </footer>
 </section>
-
-
 </body>
 </html>
