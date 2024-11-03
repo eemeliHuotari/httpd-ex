@@ -220,18 +220,6 @@
         <h2>Deploying code changes</h2>
           <p>To change this application, update your code and rebuild/redeploy the image.</p>
           <img src="cars.jpg" alt="Car">
-        <!DOCTYPE HTML>
-<html>
-  <head>
-    <title>OpenLayers Demo</title>
-    <style type="text/css">
-      html, body, #basicMap {
-          width: 100%;
-          height: 100%;
-          margin: 0;
-      }
-    </style>
-</html>
 <!DOCTYPE HTML>
 <html>
   <head>
@@ -242,19 +230,51 @@
           height: 100%;
           margin: 0;
       }
+      #demoMap {
+          height: 250px;
+          width: 100%;
+      }
     </style>
     <script src="OpenLayers.js"></script>
     <script>
       function init() {
-        map = new OpenLayers.Map("basicMap");
-        var mapnik         = new OpenLayers.Layer.OSM();
-        var fromProjection = new OpenLayers.Projection("EPSG:4326");   // Transform from WGS 1984
-        var toProjection   = new OpenLayers.Projection("EPSG:900913"); // to Spherical Mercator Projection
-        var position       = new OpenLayers.LonLat(13.41,52.52).transform( fromProjection, toProjection);
-        var zoom           = 15; 
+        var map = new OpenLayers.Map("basicMap");
 
-        map.addLayer(mapnik);
-        map.setCenter(position, zoom );
+
+        var baseLayer = new OpenLayers.Layer.OSM();
+        var fromProjection = new OpenLayers.Projection("EPSG:4326");
+        var toProjection = new OpenLayers.Projection("EPSG:900913");
+
+        var extent = new OpenLayers.Bounds(-1.32, 51.71, -1.18, 51.80).transform(fromProjection, toProjection);
+
+        var options = {
+          restrictedExtent: extent,
+          controls: [
+            new OpenLayers.Control.Navigation(),
+            new OpenLayers.Control.PanZoomBar(),
+            new OpenLayers.Control.Attribution()
+          ]
+        };
+        map = new OpenLayers.Map("basicMap", options);
+
+        map.addLayer(baseLayer);
+        var customLayer = new OpenLayers.Layer.OSM(
+          "Custom Layer",
+          "URL_TO_TILES/${z}/${x}/${y}.png",
+          {
+            zoomOffset: 13,
+            resolutions: [
+              19.1092570678711,
+              9.55462853393555,
+              4.77731426696777,
+              2.38865713348389
+            ]
+          }
+        );
+        map.addLayer(customLayer);
+
+        var centerPosition = new OpenLayers.LonLat(-1.25, 51.75).transform(fromProjection, toProjection);
+        map.setCenter(centerPosition, 10);
       }
     </script>
   </head>
@@ -262,6 +282,7 @@
     <div id="basicMap"></div>
   </body>
 </html>
+
       </section>
     </section>
     <section class="col-xs-12 col-sm-6 col-md-6">
