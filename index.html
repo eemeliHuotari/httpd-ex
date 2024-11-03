@@ -22,7 +22,8 @@
   </style>
 
 </head>
-<body>   
+<body>  
+  <section class="container">
         <div id="demoMap" ></div>
         <script src="OpenLayers.js"></script>
         <script>
@@ -32,9 +33,9 @@
           var fromProjection = new OpenLayers.Projection("EPSG:4326"); 
           var toProjection   = new OpenLayers.Projection("EPSG:900913");
       
-          var lat            = 65.01236;
-          var lon            = 25.46816;
-          var zoom           = 16;
+          var lat            = 65.054160;
+          var lon            = 25.460950;
+          var zoom           = 14;
       
           var position       = new OpenLayers.LonLat(lon, lat).transform( fromProjection, toProjection);
           
