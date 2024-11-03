@@ -208,30 +208,12 @@
 </head>
 <body>
 
- <section class='container'>
-  <hgroup>
-    <h1>Welcome to your static httpd application on OpenShift</h1>
-  </hgroup>
-  <div class="row">
-    <section class='col-xs-12 col-sm-6 col-md-6'>
-      <section>
-        <h2>Deploying code changes</h2>
-          <p>To change this application, update your code and rebuild/redeploy the image.</p>
-          <img src="cars.jpg" alt="Car">
-      </section>
+ <section class='container'>   
         <title>OpenLayers Simplest Example</title>
-        <div id="demoMap" style="height:400px"></div>
+        <div id="demoMap" style="height:1920px" style="width:1080px"></div>
         <script src="OpenLayers.js"></script>
         <script>
-          var map = new OpenLayers.Map("demoMap", {
-            controls: [
-              new OpenLayers.Control.Navigation({
-                zoomWheelEnabled: true
-          }),
-          new OpenLayers.Control.PanZoomBar(),
-          new OpenLayers.Control.Attribution()
-        ]
-      });
+          map = new OpenLayers.Map("demoMap");
           map.addLayer(new OpenLayers.Layer.OSM());
          
           var fromProjection = new OpenLayers.Projection("EPSG:4326"); 
