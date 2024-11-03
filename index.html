@@ -4,12 +4,26 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v10.2.1/ol.css">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+    .container {
+      height: 100%;
+      width: 100%;
+    }
+    #demoMap {
+      height: 100%;
+      width: 100%;
+    }
+  </style>
 
 </head>
-<body>
-
- <section class='container'>   
-        <div id="demoMap" style="height:100%" style="width:100%"></div>
+<body>   
+        <div id="demoMap" ></div>
         <script src="OpenLayers.js"></script>
         <script>
           map = new OpenLayers.Map("demoMap");
