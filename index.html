@@ -39,9 +39,13 @@
       
           var position       = new OpenLayers.LonLat(lon, lat).transform( fromProjection, toProjection);
           
-          var markers = new OpenLayers.Layer.Markers( "Markers" );
+          var iconSize = new OpenLayers.Size(32, 32); // Set icon size
+          var iconOffset = new OpenLayers.Pixel(-iconSize.w / 2, -iconSize.h);
+          var customIcon = new OpenLayers.Icon("cars.jpg", iconSize, iconOffset);
+          
+          var markers = new OpenLayers.Layer.Markers("Markers");
           map.addLayer(markers);
-          markers.addMarker(new OpenLayers.Marker(position));
+          markers.addMarker(new OpenLayers.Marker(position, customIcon));
           map.setCenter(position, zoom );
         </script>
       </div> 
