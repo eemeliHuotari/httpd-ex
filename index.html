@@ -223,7 +223,15 @@
         <div id="demoMap" style="height:400px"></div>
         <script src="OpenLayers.js"></script>
         <script>
-          map = new OpenLayers.Map("demoMap");
+          var map = new OpenLayers.Map("demoMap", {
+            controls: [
+              new OpenLayers.Control.Navigation({
+                zoomWheelEnabled: true
+          }),
+          new OpenLayers.Control.PanZoomBar(),
+          new OpenLayers.Control.Attribution()
+        ]
+      });
           map.addLayer(new OpenLayers.Layer.OSM());
          
           var fromProjection = new OpenLayers.Projection("EPSG:4326"); 
